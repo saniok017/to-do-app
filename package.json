@@ -1,7 +1,7 @@
 {
-  "name": "mentor-dashboard",
+  "name": "to-do-app",
   "version": "0.0.1",
-  "description": "mentor-dashboard",
+  "description": "todo-app",
   "main": "index.js",
   "scripts": {
     "lint": "eslint -c .eslintrc.js ./**/*.js",
@@ -9,10 +9,7 @@
     "build": "next build",
     "start": " cross-env NODE_ENV=production node server.js",
     "test": "jest",
-    "dev": "nodemon server.js",
-    "script": "node script/index.js",
-    "start:all": "npm-run-all -l -p script build start",
-    "deploy": "now --public"
+    "dev": "nodemon server.js"
   },
   "author": "saniok017",
   "license": "ISC",
@@ -28,7 +25,6 @@
     "jest-environment-enzyme": "^7.0.1",
     "jest-enzyme": "^7.0.1",
     "nodemon": "^1.18.9",
-    "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "react-test-renderer": "^16.8.3"
   },
@@ -40,7 +36,6 @@
     "body-parser": "^1.13.3",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
-    "ejs": "^2.6.1",
     "enzyme": "^3.9.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -50,7 +45,6 @@
     "express": "^4.16.4",
     "express-partials": "^0.3.0",
     "express-session": "^1.11.3",
-    "googleapis": "^36.0.0",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.11",
@@ -64,12 +58,11 @@
     "react-select": "^2.3.0",
     "regenerator-runtime": "^0.11.1",
     "router": "^1.1.3",
-    "sw-precache-webpack-plugin": "^0.11.5",
-    "xlsx": "^0.14.1"
+    "sw-precache-webpack-plugin": "^0.11.5"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rolling-scopes-school/saniok017-2018Q3"
+    "url": "https://github.com/saniok017/to-do-app"
   },
   "jest": {
     "transform": {
