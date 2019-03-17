@@ -7,8 +7,8 @@ const path = require('path');
 const cors = require('cors');
 const partials = require('express-partials');
 const gitHubStrategy = require('../passport/gitHubStrategy');
-const facebookStrategy = require('../passport/facebookStrategy');
-const twitterStrategy = require('../passport/twitterStrategy');
+// const facebookStrategy = require('../passport/facebookStrategy');
+// const twitterStrategy = require('../passport/twitterStrategy');
 const config = require('../config/config');
 const passportInitializer = require('../lib/passportInitializer');
 
@@ -21,6 +21,6 @@ module.exports = (app) => {
   app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
   app.use(passport.initialize());
   app.use(passport.session());
-  passportInitializer(passport, gitHubStrategy, facebookStrategy, twitterStrategy);
+  passportInitializer(passport, gitHubStrategy);
   app.use(express.static(path.resolve(__dirname, '../public')));
 };

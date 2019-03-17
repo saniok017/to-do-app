@@ -1,7 +1,10 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
 import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
+import store from '../client/store';
 import Layout from '../components/Layout';
+import App from '../client/App';
 
 const PORT = process.env.PORT || 3000;
 
@@ -49,7 +52,9 @@ class Index extends React.Component {
 
     return (
       <Layout title='to-do-app' description='To Do App project made with next.js' user={logineduser}>
-        <h1 style={{ marginLeft: '33vw' }}> To Do App </h1>
+        <Provider store={store}>
+          <App />
+        </Provider>
       </Layout>
     );
   }

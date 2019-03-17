@@ -65,8 +65,8 @@ const Layout = (
     `}</style>
     <style global jsx>{`
       body {
-        background: white;
-        font-family: Verdana, Geneva, sans-serif;
+        background-color: #f7f7f7;
+        font-family: Verdana, Geneva, 'Roboto', sans-serif;
       }
     `}</style>
   </div>

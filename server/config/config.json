@@ -1,4 +1,5 @@
 {
+  "database": "mongodb://todoappuser:pq9173@ds038547.mlab.com:38547/to-do-app",
   "port": 3000,
   "corsOptions": {
       "origin": "http://localhost:3000",
