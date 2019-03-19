@@ -2,7 +2,7 @@
   "database": "mongodb://todoappuser:pq9173@ds038547.mlab.com:38547/to-do-app",
   "port": 3000,
   "corsOptions": {
-      "origin": "http://localhost:3000",
+      "origin": "https://my-awesome-to-do-app.herokuapp.com",
       "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
       "credentials": true
   },
@@ -10,14 +10,14 @@
       "session": false
   },
   "githubAuth": {
-      "clientID": "d1db7a06e64ef161b45b",
-      "clientSecret": "bf0002f88516a9c6bf9f1795f5bf0e5d0599af6d",
-      "callbackURL": "http://localhost:3000/auth/github/callback"
+      "clientID": "69a22893d15e777d1f08",
+      "clientSecret": "99fe85c261df8e5ef0c430ebb7121f9bad3d3d1a",
+      "callbackURL": "https://my-awesome-to-do-app.herokuapp.com/auth/github/callback"
   },
   "secret": "passport-test",
-  "basePageRedirect": "http://localhost:3000",
-  "successRedirect": "http://localhost:3000/#login-success",
-  "failureRedirect": "http://localhost:3000",
+  "basePageRedirect": "https://my-awesome-to-do-app.herokuapp.com",
+  "successRedirect": "https://my-awesome-to-do-app.herokuapp.com/#login-success",
+  "failureRedirect": "https://my-awesome-to-do-app.herokuapp.com",
   "sessionOptions": {
       "secret": "passport_test",
       "resave": true,

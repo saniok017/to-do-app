@@ -6,6 +6,7 @@ const routesHandle = require('./server/routes/routesHandle');
 const config = require('./server/config/config');
 
 const port = process.env.PORT || 3000;
+const host = '0.0.0.0';
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -24,9 +25,9 @@ app.prepare()
 
     routesHandle(server, handle, app);
 
-    server.listen(port, (err) => {
+    server.listen(port, host, (err) => {
       if (err) throw err;
-      console.log(`> Ready on http://localhost:${port}`);
+      console.log(`> Ready on http://${host}:${port}`);
     });
   })
   .catch((ex) => {

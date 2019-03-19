@@ -7,7 +7,8 @@
     "lint": "eslint -c .eslintrc.js ./**/*.js",
     "fix-lint": "eslint -c .eslintrc.js ./components/**/*.js --fix",
     "build": "next build",
-    "start": " cross-env NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production node server.js",
+    "heroku-postbuild": "next build",
     "test": "jest",
     "dev": "nodemon server.js"
   },

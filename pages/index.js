@@ -16,10 +16,13 @@ class Index extends React.Component {
 
   static async getInitialProps(context) {
     let { logineduser } = context.query;
+    const { req } = context;
+
+    const baseUrl = req ? `https://${req.get('Host')}` : '';
 
     try {
       if (!logineduser) {
-        const responseJson = await fetch(`http://localhost:${PORT}/user`);
+        const responseJson = await fetch(`${baseUrl}/user`);
         const response = await responseJson.json();
         if (response.user) logineduser = response.user;
       }
@@ -29,6 +32,7 @@ class Index extends React.Component {
 
     return {
       logineduser,
+      baseUrl,
     };
   }
 
@@ -46,14 +50,12 @@ class Index extends React.Component {
   }
 
   render() {
-    const {
-      logineduser,
-    } = this.props;
+    const { logineduser, baseUrl } = this.props;
 
     return (
       <Layout title='to-do-app' description='To Do App project made with next.js' user={logineduser}>
         <Provider store={store}>
-          <App />
+          <App baseUrl={baseUrl} />
         </Provider>
       </Layout>
     );

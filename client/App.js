@@ -3,10 +3,10 @@ import React, { Fragment } from 'react';
 import ToDo from './containers/todo/todo';
 import Title from './components/title/title';
 
-const App = () => (
+const App = baseUrl => (
   <Fragment>
     <Title title="ToDo App" />
-    <ToDo />
+    <ToDo baseUrl={baseUrl} />
   </Fragment>
 );
 

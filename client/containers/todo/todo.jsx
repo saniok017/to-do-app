@@ -61,8 +61,8 @@ class ToDo extends Component {
     }
   }
 
-  componentWillReceiveProps({ tasks }) {
-    saveStore(tasks);
+  componentWillReceiveProps({ tasks, baseUrl }) {
+    saveStore(tasks, baseUrl);
   }
 
   getActiveTasksCounter = tasks => tasks.filter(task => !task.isCompleted).length;

@@ -1,6 +1,5 @@
-const refreshStore = (store) => {
-  const port = process.env.PORT || 3000;
-  fetch(`http://localhost:${port}/user`,
+const refreshStore = (store, baseUrl) => {
+  fetch(`${baseUrl}/user`,
     {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
