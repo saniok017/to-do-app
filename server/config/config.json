@@ -10,8 +10,8 @@
       "session": false
   },
   "githubAuth": {
-      "clientID": "40374ce0244496dfedf9",
-      "clientSecret": "561e1c32dd06736ffd8bc9c0166cd2bd4eda486b",
+      "clientID": "d1db7a06e64ef161b45b",
+      "clientSecret": "bf0002f88516a9c6bf9f1795f5bf0e5d0599af6d",
       "callbackURL": "http://localhost:3000/auth/github/callback"
   },
   "secret": "passport-test",

@@ -2,15 +2,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ToDoItem = ({
-  text, isCompleted, removeTask, id, completeTask,
+  text, isCompleted, removeTask, id, completeTask, priority, toggleTaskPriority,
 }) => (
   <div>
     <li className="todo-item">
       <i onClick={() => completeTask(id)} className={isCompleted ? 'mark far fa-check-circle' : 'mark far fa-circle'} />
-      <span className={isCompleted ? 'completed text' : 'text'}>{text}</span>
-      <i onClick={() => removeTask(id)} className="fas fa-times" />
+      <span className={isCompleted ? 'completed text' : `text ${priority}`}>{`${new Date(id).toLocaleDateString('ru-RU')}  ${priority}  ${text}`}</span>
+      <div className="wrapper">
+        <i onClick={() => toggleTaskPriority(id)} className="fas fa-sync" />
+        <i onClick={() => removeTask(id)} className="fas fa-times" />
+      </div>
     </li>
     <style jsx>{`
+        .fa-sync {
+          transition: all .3s ease;
+          color: rgba(175, 47, 47, 0.15);
+        }
+
+        .todo-item:hover .fa-sync {
+          color: black;
+        }
+
+        .High {
+          color: red;
+        }
+
+        .Medium {
+          color: purple;
+        }
+
+        .Low {
+          color: green;
+        }
+
         .todo-item {
           font-size: 24px;
           border-bottom: 1px solid #ededed;
@@ -40,6 +64,7 @@ const ToDoItem = ({
         }
         
         .fa-times {
+          margin-left: 0.5em;
           transition: all .3s ease;
           color: rgba(175, 47, 47, 0.15);
         }

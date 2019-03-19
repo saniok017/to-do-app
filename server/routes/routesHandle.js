@@ -1,12 +1,35 @@
 const passport = require('passport');
 const path = require('path');
+const mongoose = require('mongoose');
 const ensureAuthenticated = require('../lib/ensureAuthenticated');
-const BD = require('../config/BD');
+
+const User = mongoose.model('User');
 
 const routesHandle = (server, handle, app) => {
   server.get('/user', ensureAuthenticated, (req, res) => {
-    const ID = req.user.id;
-    res.send({ user: req.user, mentor: BD.get(ID) });
+    res.send({ user: req.user });
+  });
+
+  server.put('/user', ensureAuthenticated, (req, res) => {
+    User.findOneAndUpdate(
+      {
+        id: req.user.id,
+      },
+      {
+        $set: {
+          id: req.user.id,
+          store: req.body.store,
+        },
+      },
+      {
+        _id: -1,
+        upsert: true,
+      },
+      (err, result) => {
+        if (err) return res.send(err);
+        res.send(result);
+      },
+    );
   });
 
   server.get('/service-worker.js', (req, res) => {
@@ -23,11 +46,9 @@ const routesHandle = (server, handle, app) => {
     passport.authenticate('github', { failureRedirect: '/' }),
     (req, res) => {
       const renderPage = '/';
-      const ID = req.user.id;
 
       const queryParams = {
         logineduser: req.user,
-        loginedMentor: BD.get(ID),
       };
       app.render(req, res, renderPage, queryParams);
     });

@@ -6,11 +6,20 @@ import {
   removeTask,
   completeTask,
   changeFilter,
+  toggleTaskPriority,
 } from '../../actions/actionCreator';
 
+import saveStore from '../../saveStore';
 import ToDoInput from '../../components/todo-input/todo-input';
 import ToDoList from '../../components/todo-list/todo-list';
 import Footer from '../../components/footer/footer';
+
+const mapPriorities = tasks => tasks.map((task) => {
+  let sortPriority = 3;
+  if (task.priority === 'High') sortPriority = 1;
+  if (task.priority === 'Medium') sortPriority = 2;
+  return { ...task, sortPriority };
+});
 
 class ToDo extends Component {
   state = {
@@ -26,10 +35,10 @@ class ToDo extends Component {
   addTask = ({ key }) => {
     const { taskText } = this.state;
 
-    if (taskText.length > 3 && key === 'Enter') {
+    if (taskText.length > 2 && key === 'Enter') {
       const { addTask } = this.props;
 
-      addTask((new Date()).getTime(), taskText, false);
+      addTask((new Date()).getTime(), taskText, false, 'High');
 
       this.setState({
         taskText: '',
@@ -43,9 +52,17 @@ class ToDo extends Component {
         return tasks.filter(task => task.isCompleted);
       case 'active':
         return tasks.filter(task => !task.isCompleted);
+      case 'priority':
+        return mapPriorities(tasks).sort((a, b) => a.sortPriority - b.sortPriority);
+      case 'date':
+        return tasks.sort((a, b) => a.id - b.id);
       default:
         return tasks;
     }
+  }
+
+  componentWillReceiveProps({ tasks }) {
+    saveStore(tasks);
   }
 
   getActiveTasksCounter = tasks => tasks.filter(task => !task.isCompleted).length;
@@ -58,6 +75,7 @@ class ToDo extends Component {
       completeTask,
       filters,
       changeFilter,
+      toggleTaskPriority,
     } = this.props;
     const isTasksExist = tasks && tasks.length > 0;
     const filteredTasks = this.filterTasks(tasks, filters);
@@ -67,10 +85,10 @@ class ToDo extends Component {
       <div>
       <div className="todo-wrapper">
         <ToDoInput onKeyPress={this.addTask} onChange={this.handleInputChange} value={taskText} />
-        {isTasksExist && <ToDoList completeTask={completeTask}
-                                tasksList={filteredTasks} removeTask={removeTask} />}
+        {isTasksExist && <ToDoList completeTask={completeTask} tasksList={filteredTasks}
+        removeTask={removeTask} toggleTaskPriority={toggleTaskPriority} />}
         {isTasksExist && <Footer changeFilter={changeFilter}
-                                amount={taskCounter} activeFilter={filters} />}
+          amount={taskCounter} activeFilter={filters} />}
       </div>
 
         <style jsx>{`
@@ -96,4 +114,5 @@ export default connect(({ tasks, filters }) => ({
   removeTask,
   completeTask,
   changeFilter,
+  toggleTaskPriority,
 })(ToDo);

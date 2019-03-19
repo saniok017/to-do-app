@@ -1,12 +1,13 @@
 import {
-  ADD_TASK, REMOVE_TASK, COMPLETE_TASK, CHANGE_FILTER,
+  ADD_TASK, REMOVE_TASK, COMPLETE_TASK, CHANGE_FILTER, TOGGLE_TASK,
 } from '../constants';
 
-export const addTask = (id, text, isCompleted) => ({
+export const addTask = (id, text, isCompleted, priority) => ({
   type: ADD_TASK,
   id,
   text,
   isCompleted,
+  priority,
 });
 
 export const removeTask = id => ({
@@ -22,4 +23,9 @@ export const completeTask = id => ({
 export const changeFilter = activeFilter => ({
   type: CHANGE_FILTER,
   activeFilter,
+});
+
+export const toggleTaskPriority = id => ({
+  type: TOGGLE_TASK,
+  id,
 });

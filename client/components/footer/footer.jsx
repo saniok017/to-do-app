@@ -14,6 +14,14 @@ const FILTERS_BTN = [
     text: 'Completed',
     id: 'completed',
   },
+  {
+    text: 'priority',
+    id: 'priority',
+  },
+  {
+    text: 'date',
+    id: 'date',
+  },
 ];
 
 const Footer = ({ amount, activeFilter, changeFilter }) => (

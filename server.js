@@ -11,7 +11,10 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database);
+mongoose.connect(config.database, { useNewUrlParser: true }).then(
+  () => { console.log('Database is connected'); },
+  (err) => { console.log(`Can not connect to the database ${err}`); },
+);
 
 app.prepare()
   .then(() => {

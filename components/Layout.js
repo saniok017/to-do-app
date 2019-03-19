@@ -26,7 +26,7 @@ const Layout = (
           ? <Link href="/auth/github"><a className="main-link">Login</a></Link>
           : <Fragment>
               <Link href="/logout"><a className="main-link">Log Out</a></Link>
-              <img className="RSSLink" alt="User Avatar" src={user.photos[0].value} />
+              <img className="UserAvatar" alt="User Avatar" src={user.photos[0].value} />
             </Fragment>
         }
       </nav>
@@ -61,6 +61,14 @@ const Layout = (
         font-size: 0.9rem;
         padding-right: 1em;
         cursor: pointer;
+      }
+      nav .UserAvatar {
+        width: 2.7em;
+        height: 2.4em;
+        display: flex;
+      }
+      nav .UserAvatar img {
+        width: 2.6em;
       }
     `}</style>
     <style global jsx>{`

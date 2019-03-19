@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ToDoItem from '../todo-item/todo-item';
 
-const ToDoList = ({ tasksList, removeTask, completeTask }) => (
+const ToDoList = ({
+  tasksList, removeTask, completeTask, toggleTaskPriority,
+}) => (
   <div>
   <ul className="todo-list">
-    {tasksList.map(({ id, text, isCompleted }) => (
-      <ToDoItem completeTask={completeTask}
-      removeTask={removeTask} id={id} key={id} text={text} isCompleted={isCompleted} />
+    {tasksList.map(({
+      id, text, isCompleted, priority,
+    }) => (
+      <ToDoItem completeTask={completeTask} priority={priority}
+      toggleTaskPriority={toggleTaskPriority} removeTask={removeTask} id={id} key={id}
+      text={text} isCompleted={isCompleted} />
     ))}
   </ul>
     <style jsx>{`

@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-  username: String,
-  password: String,
-  githubId: String,
+  githubId: Number,
+  store: Array,
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model('User', UserSchema);
